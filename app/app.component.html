@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Recipe Box</h1>
+  <div [class]="priorityColor(recipe)" *ngFor="let recipe of recipes">
+    <h3>{{recipe.name}}</h3>
+    <ul>
+      <li *ngFor="let currentIngredient of recipe.ingredients">{{currentIngredient}}</li>
+    </ul>
+    <h4>Directions</h4>
+    <ol>
+      <li *ngFor="let currentDirection of recipe.directions">{{currentDirection}}</li>
+    </ol>
+    <button (click)="recipe.editRecipe()">Edit!</button>
+    <div *ngIf="recipe.editing">
+      <input [(ngModel)]="recipe.ingredients[1]">
+      <label>Enter Recipe Priority (1-3):</label>
+      <br>
+      <input name = "{{recipe.name}}_1" type="radio" [(ngModel)]="recipe.priority" [value]="1">1 (Low Priority)<br>
+      <input name = "{{recipe.name}}_2" type="radio" [(ngModel)]="recipe.priority" [value]="2">2 (Medium Priority)<br>
+      <input name = "{{recipe.name}}_3" type="radio" [(ngModel)]="recipe.priority" [value]="3">3 (High Priority)<br>
+    </div>
+  </div>
+</div>
